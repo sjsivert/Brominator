@@ -1,10 +1,14 @@
 # Beskrivelse av modellen
 
+<<<<<<< HEAD
 ### ER-diagram av databasen
 
 ![bilde](ER-diagram_treningsdagbok_picture.png)
 
 Oppgave 1c:
+=======
+Oppgave:
+>>>>>>> b7b6f740718efedcb52ce5e974e1f697a489ebb0
 
 For hvert nummerert punkt i kravspesifikasjonen skal det kort forklares hvordan modellen deres oppfyller kravet til en slik funksjonalitet.
 
