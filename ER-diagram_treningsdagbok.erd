@@ -11,14 +11,11 @@
 <attribute is_hidden="false" is_key="false" name="Notat" type=""/>
 </attributes>
 </entity>
-<entity id="1" is_weak="false" name="Øvelse" x="326" y="169">
+<entity id="1" is_weak="false" name="Øvelse" x="326" y="201">
 <attributes>
 <attribute is_hidden="false" is_key="true" name="ID" type="Counter"/>
 <attribute is_hidden="false" is_key="false" name="Navn" type="Text"/>
 <attribute is_hidden="false" is_key="false" name="Har apparat" type="Boolean"/>
-<attribute is_hidden="false" is_key="false" name="Antall kilo" type="Integer"/>
-<attribute is_hidden="false" is_key="false" name="Antall sett" type="Integer"/>
-<attribute is_hidden="false" is_key="false" name="Antall repetisjoner" type=""/>
 <attribute is_hidden="false" is_key="false" name="Beskrivelse" type="Text"/>
 </attributes>
 </entity>
@@ -36,7 +33,11 @@
 </attributes>
 </entity>
 <diamond id="4" is_weak="false" name="ØvelseITreningsøkt" x="147" y="206">
-<attributes/>
+<attributes>
+<attribute name="Antall kilo" type=""/>
+<attribute name="Antall sett" type=""/>
+<attribute name="Antall repetisjoner" type=""/>
+</attributes>
 </diamond>
 <diamond id="5" is_weak="false" name="ØvelseIØvelsegruppe" x="461" y="107">
 <attributes/>
@@ -49,11 +50,11 @@
 <connection connection_side="0" direction="0" object_id="4" relation_point_x="147" relation_point_y="222"/>
 </line>
 <line cardinality_string="(0,n)" has_u="false" id="8" is_weak="false" role="" style="0" turned="false">
-<connection connection_side="0" direction="0" object_id="1" relation_point_x="326" relation_point_y="233"/>
+<connection connection_side="0" direction="0" object_id="1" relation_point_x="326" relation_point_y="244"/>
 <connection connection_side="2" direction="0" object_id="4" relation_point_x="179" relation_point_y="222"/>
 </line>
 <line cardinality_string="(1,n)" has_u="false" id="9" is_weak="false" role="" style="0" turned="false">
-<connection connection_side="1" direction="1" object_id="1" relation_point_x="380" relation_point_y="169"/>
+<connection connection_side="1" direction="1" object_id="1" relation_point_x="363" relation_point_y="201"/>
 <connection connection_side="0" direction="0" object_id="5" relation_point_x="461" relation_point_y="123"/>
 </line>
 <line cardinality_string="(1,n)" has_u="false" id="10" is_weak="false" role="" style="0" turned="false">
@@ -61,7 +62,7 @@
 <connection connection_side="2" direction="0" object_id="5" relation_point_x="493" relation_point_y="123"/>
 </line>
 <line cardinality_string="(0,1)" has_u="false" id="11" is_weak="false" role="" style="0" turned="false">
-<connection connection_side="3" direction="1" object_id="1" relation_point_x="380" relation_point_y="297"/>
+<connection connection_side="3" direction="1" object_id="1" relation_point_x="363" relation_point_y="287"/>
 <connection connection_side="0" direction="0" object_id="6" relation_point_x="467" relation_point_y="348"/>
 </line>
 <line cardinality_string="(1,n)" has_u="false" id="12" is_weak="false" role="" style="0" turned="false">
