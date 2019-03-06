@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram height="700" made_with_version="1.6" name="Default" width="940">
+<entity id="0" is_weak="false" name="Treningsøkt" x="16" y="166">
+<attributes>
+<attribute is_hidden="false" is_key="true" name="ID" type=""/>
+<attribute is_hidden="false" is_key="false" name="Dato" type=""/>
+<attribute is_hidden="false" is_key="false" name="Tidspunkt" type=""/>
+<attribute is_hidden="false" is_key="false" name="Varighet" type=""/>
+<attribute is_hidden="false" is_key="false" name="Personlig form" type=""/>
+<attribute is_hidden="false" is_key="false" name="Prestasjon" type=""/>
+<attribute is_hidden="false" is_key="false" name="Notat" type=""/>
+</attributes>
+</entity>
+<entity id="1" is_weak="false" name="Øvelse" x="326" y="169">
+<attributes>
+<attribute is_hidden="false" is_key="true" name="ID" type="Counter"/>
+<attribute is_hidden="false" is_key="false" name="Navn" type="Text"/>
+<attribute is_hidden="false" is_key="false" name="Har apparat" type="Boolean"/>
+<attribute is_hidden="false" is_key="false" name="Antall kilo" type="Integer"/>
+<attribute is_hidden="false" is_key="false" name="Antall sett" type="Integer"/>
+<attribute is_hidden="false" is_key="false" name="Antall repetisjoner" type=""/>
+<attribute is_hidden="false" is_key="false" name="Beskrivelse" type="Text"/>
+</attributes>
+</entity>
+<entity id="2" is_weak="false" name="Øvelsesgruppe" x="651" y="102">
+<attributes>
+<attribute is_hidden="false" is_key="true" name="ID" type=""/>
+<attribute is_hidden="false" is_key="false" name="Navn" type=""/>
+</attributes>
+</entity>
+<entity id="3" is_weak="false" name="Apparat" x="653" y="327">
+<attributes>
+<attribute is_hidden="false" is_key="true" name="ID" type=""/>
+<attribute is_hidden="false" is_key="false" name="Navn" type=""/>
+<attribute is_hidden="false" is_key="false" name="Beskrivelse av bruk" type=""/>
+</attributes>
+</entity>
+<diamond id="4" is_weak="false" name="ØvelseITreningsøkt" x="147" y="206">
+<attributes/>
+</diamond>
+<diamond id="5" is_weak="false" name="ØvelseIØvelsegruppe" x="461" y="107">
+<attributes/>
+</diamond>
+<diamond id="6" is_weak="false" name="ApparatIØvelse" x="467" y="332">
+<attributes/>
+</diamond>
+<line cardinality_string="(1,n)" has_u="false" id="7" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="2" direction="0" object_id="0" relation_point_x="108" relation_point_y="230"/>
+<connection connection_side="0" direction="0" object_id="4" relation_point_x="147" relation_point_y="222"/>
+</line>
+<line cardinality_string="(0,n)" has_u="false" id="8" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="0" direction="0" object_id="1" relation_point_x="326" relation_point_y="233"/>
+<connection connection_side="2" direction="0" object_id="4" relation_point_x="179" relation_point_y="222"/>
+</line>
+<line cardinality_string="(1,n)" has_u="false" id="9" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="1" direction="1" object_id="1" relation_point_x="380" relation_point_y="169"/>
+<connection connection_side="0" direction="0" object_id="5" relation_point_x="461" relation_point_y="123"/>
+</line>
+<line cardinality_string="(1,n)" has_u="false" id="10" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="0" direction="0" object_id="2" relation_point_x="651" relation_point_y="131"/>
+<connection connection_side="2" direction="0" object_id="5" relation_point_x="493" relation_point_y="123"/>
+</line>
+<line cardinality_string="(0,1)" has_u="false" id="11" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="3" direction="1" object_id="1" relation_point_x="380" relation_point_y="297"/>
+<connection connection_side="0" direction="0" object_id="6" relation_point_x="467" relation_point_y="348"/>
+</line>
+<line cardinality_string="(1,n)" has_u="false" id="12" is_weak="false" role="" style="0" turned="false">
+<connection connection_side="0" direction="0" object_id="3" relation_point_x="653" relation_point_y="363"/>
+<connection connection_side="2" direction="0" object_id="6" relation_point_x="499" relation_point_y="348"/>
+</line>
+</diagram>
