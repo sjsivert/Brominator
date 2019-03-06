@@ -6,3 +6,5 @@ Treningsøkt( _TreningsøktID_, Dato, Tidspunkt, Varighet, PersonligForm, Presta
 Apparat( _ApparatID_, Navn, HvordanBruke)
 Øvelsesgruppe( _ØvelsesgruppeID_, Navn)
 ØvelseIØvelsesgruppe( _ØvelsesgruppeID_, _ØvelseID_)
+
+Vi valgte å modellere Kilo, AntallSett og AntallReps på relasjonen mellom Øvelse og Treningsøkt fordi øvelsene da kan være generelle øvelser og at man slipper å opprette nye øvelser for hver treningsøkt. Når vi kobler økt mot øvelse vil vi da også få med hvor bra det gikk på de forskjellige øvelsene akkurat denne treningsøkten.
