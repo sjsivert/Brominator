@@ -1,16 +1,17 @@
 package innlevering2;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.util.Calendar;
-
 public class Main{
 
+  public ExerciseCtrl exerciseCtrl = new ExerciseCtrl();
+
   public static void main(String[] args) throws Exception{
-    RegTreningCtrl regTreningCtrl = new RegTreningCtrl();
-    Calendar cal = Calendar.getInstance();
-    cal.set(2019, Calendar.JANUARY, 22, 15, 20);
-    regTreningCtrl.regTrening(cal.getTime(), 60, 8, 8, "God trening");
+    Main main = new Main();
+    try{
+      Exercise exercise = new Exercise("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
+      main.exerciseCtrl.saveObject(exercise);
+    }
+    catch(IllegalArgumentException e){
+      System.out.println(e.getLocalizedMessage());
+    }
   }
 }
