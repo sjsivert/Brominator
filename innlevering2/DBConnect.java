@@ -15,7 +15,7 @@ public abstract class DBConnect{
       Class.forName("com.mysql.jdbc.Driver").newInstance();
       String user = System.getenv("DB_TRENINGSDAGBOK_USER");
       String password = System.getenv("DB_TRENINGSDAGBOK_PASS");
-      connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/Treningsdagbok?autoReconnect=true&useSSL=false", user, password);
+      connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/Treningsdagbok?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, password);
       System.out.println("Connection established");
     }
     catch(Exception e){
