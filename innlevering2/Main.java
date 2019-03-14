@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Main{
 	private Scanner input = new Scanner(System.in);
 	//private String state = new String;
-
 	public void skrevetFeil() {
 		System.out.println('Velg en av kommandoene over ^');
 	}
@@ -56,7 +55,6 @@ public class Main{
 		else {
 			skrevetFeil();
 		}
-
 	}
 
 	public ArrayList<String> stringToList(String string) { // skal ikke være void, men må ha ...args ellerno så den kan returnere ulikt antall variabler.
@@ -79,7 +77,6 @@ public class Main{
 	public void getExercises() {
 		// Vise treningsøktene basert på id
 		// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
-
 		System.out.println('Dette er alle treningsøktene:');
 		displayAllExercises();
 		System.out.println('For å se de n sistetreningsøktene, skriv skriv inn antall n.');
@@ -109,7 +106,6 @@ public class Main{
 			skrevetFeil();
 		}
 	}
-
 
 //	public void manager() {
 //		if (state.equals('velkommen'){
