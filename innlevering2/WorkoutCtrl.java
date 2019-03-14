@@ -59,7 +59,7 @@ public class WorkoutCtrl extends DBConnect{
 
   public List<Workout> getNPreviousWorkouts(String n){
     try{
-      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktId DESC LIMIT ?) AS AllRows ORDER BY TreningsøktId ASC");
+      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID ASC");
     }
     catch(Exception e){
       throw new RuntimeException(e);

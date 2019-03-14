@@ -19,7 +19,7 @@ CREATE TABLE Øvelse (
     Navn VARCHAR(30) NOT NULL,
     Beskrivelse TEXT NOT NULL,
     HarApparat BOOLEAN NOT NULL,
-    ApparatID INTEGER NOT NULL,
+    ApparatID INTEGER,
     CONSTRAINT Øvelse_PK PRIMARY KEY (ØvelseID),
     CONSTRAINT Øvelse_FK FOREIGN KEY (ApparatID)
         REFERENCES Apparat (ApparatID)
