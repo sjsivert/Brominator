@@ -17,7 +17,7 @@ Vi har tabeller i SQL som kan registrere apparatoer, øvelser og treningsøkter 
 Her kan vi selecte treningsøkter på ID så vi får ut de n siste og kan vise informasjon om dette.
 
 ### 3. Resultatlogg av øvelser i tidsintervall
-Ved å joine Øvelse og Treningsøkt på gitt dato (og evt. tidspunnkt) på dato (og tidspunkt) kan vi får ut øvelsene gjennomført i det gitte tidsrommet. Man kan se ulik prestasjon i antall kilo, sett og reps i relasjonen mellom Treningsøkt og Øvelse.
+Ved å joine Øvelse og Treningsøkt på gitt dato (og evt. tidspunkt) på dato (og tidspunkt) kan vi får ut øvelsene gjennomført i det gitte tidsrommet. Man kan se ulik prestasjon i antall kilo, sett og reps i relasjonen mellom Treningsøkt og Øvelse.
 
 ### 4. Finne øvelser i samme øvelsesgruppe
 Vi har testdata lagt inn i databasen som kan brukes til å teste med.
