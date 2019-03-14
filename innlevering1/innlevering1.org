@@ -28,7 +28,7 @@ Vi valgte å modellere Kilo, AntallSett og AntallReps på relasjonen mellom Øve
 * C) Hvordan oppfylle krav
 Oppgave: For hvert nummerert punkt i kravspesifikasjonen skal det kort forklares hvordan modellen deres oppfyller kravet til en slik funksjonalitet.
 ** 1. Registrering
-Vi har tabeller i SQL som kan registrere apparatoer, øvelser og treningsøkter med tilhørende data.
+Vi har tabeller i SQL som kan registrere apparater, øvelser og treningsøkter med tilhørende data.
 ** 2. Få opp informasjon om n siste treningsøkter
 Her kan vi selecte treningsøkter på ID så vi får ut de n siste og kan vise informasjon om dette.
 ** 3. Resultatlogg av øvelser i tidsintervall
