@@ -24,7 +24,7 @@ public class Workout{
     }
 
     public Workout(String date, Time duration, int shape, int performance, String note){
-        this.date = date;
+        this.date = date.substring(0, 16);
         this.duration = duration;
         this.shape = shape;
         this.performance = performance;
@@ -136,7 +136,7 @@ public class Workout{
 
     @Override
     public String toString(){
-        return "Dato: " + date + "\n" + "Varighet: " + duration + "\n"
-                + "PersonligForm: " + shape + "\n" + "Notat: " + note;
+        return "Dato: " + date + " Varighet: " + duration.toString().substring(0, 5)
+                + " PersonligForm: " + shape + " Notat: " + note;
     }
 }
