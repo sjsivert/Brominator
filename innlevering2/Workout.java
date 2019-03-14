@@ -5,7 +5,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class Exercise{
+public class Workout{
 
     private String date;
     private Time duration;
@@ -14,13 +14,21 @@ public class Exercise{
     private String note;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-    public Exercise(String date, String duration, String shape, String performance, String note) throws IllegalArgumentException{
+    public Workout(String date, String duration, String shape, String performance, String note) throws IllegalArgumentException{
         setDate(date);
         setDuration(duration);
         setShape(shape);
         setPerformance(performance);
         setNote(note);
         sdf.setLenient(false);
+    }
+
+    public Workout(String date, Time duration, int shape, int performance, String note){
+        this.date = date;
+        this.duration = duration;
+        this.shape = shape;
+        this.performance = performance;
+        this.note = note;
     }
 
     public String getDate(){
@@ -124,5 +132,11 @@ public class Exercise{
 
     public boolean noteIsValid(String note){
         return note instanceof String;
+    }
+
+    @Override
+    public String toString(){
+        return "Dato: " + date + "\n" + "Varighet: " + duration + "\n"
+                + "PersonligForm: " + shape + "\n" + "Notat: " + note;
     }
 }
