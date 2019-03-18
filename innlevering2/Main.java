@@ -5,12 +5,14 @@ import java.util.List;
 public class Main{
 
   public WorkoutCtrl workoutCtrl = new WorkoutCtrl();
-  public ExerciseResultsCtrl exerciseResultsCtrl = new ExerciseResultsCtrl();
+  public ExerciseInWorkoutCtrl exerciseInWorkoutCtrl = new ExerciseInWorkoutCtrl();
 
   public static void main(String[] args) throws Exception{
     Main main = new Main();
     try{
-      main.exerciseResultsCtrl.printResultsInInterval("2019-02-05 12:20", "2019-02-07 20:23");
+      String results = main.exerciseInWorkoutCtrl.getResultsInInterval("2018-10-24 10:00", "2018-10-31 12:12");
+      String workresult = main.workoutCtrl.getNPreviousWorkouts("2");
+      System.out.println(workresult);
     }
     catch(IllegalArgumentException e){
       System.out.println(e.getLocalizedMessage());

@@ -57,9 +57,9 @@ public class WorkoutCtrl extends DBConnect{
     }
   }
 
-  public List<Workout> getNPreviousWorkouts(String n){
+  public String getNPreviousWorkouts(String n){
     try{
-      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID ASC");
+      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID DESC");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -67,15 +67,17 @@ public class WorkoutCtrl extends DBConnect{
     try{
       regStatement.setInt(1, Integer.parseInt(n));
       ResultSet rs = regStatement.executeQuery();
-      List<Workout> workouts = new ArrayList<Workout>();
       Calendar tzCal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
+      String output = "";
       while (rs.next()) {
-        Workout workout = new Workout(rs.getString("Dato"),
-                        rs.getTime("Varighet", tzCal), rs.getInt("PersonligForm"),
-                        rs.getInt("Prestasjon"), rs.getString("Notat"));
-        workouts.add(workout);
+        output += "-----------------------------" +
+                  rs.getString("Dato").substring(0, 16) + "\n" +
+                  "Varighet: " + rs.getTime("Varighet", tzCal).toString().substring(0, 5) + "\n" +
+                  "Personlig form: " + rs.getInt("PersonligForm") + "\n" +
+                  "Prestasjon: " + rs.getInt("Prestasjon") + "\n" +
+                  "Notat: " + rs.getString("Notat") + "\n";
       }
-      return workouts;
+      return output;
     }
     catch(Exception e){
       throw new RuntimeException(e);
