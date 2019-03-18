@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.TimeZone;
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.ArrayList;
 
 public class WorkoutCtrl extends DBConnect{
 
   private PreparedStatement regStatement;
 
-  public boolean saveObject(Workout workout){
+  public boolean saveWorkout(Workout workout){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Treningsøkt (Dato, Varighet, PersonligForm, Prestasjon, Notat) VALUES (?, ?, ?, ?, ?)");
     }
@@ -30,7 +33,7 @@ public class WorkoutCtrl extends DBConnect{
     return true;
   }
 
-  public Workout getObject(String Id){
+  public Workout getWorkout(String Id){
     try{
       regStatement = connection.prepareStatement("SELECT Dato, Varighet, PersonligForm, Prestasjon, Notat FROM Treningsøkt WHERE TreningsøktID = ?");
     }
@@ -53,4 +56,30 @@ public class WorkoutCtrl extends DBConnect{
       throw new RuntimeException(e);
     }
   }
+
+  public List<Workout> getNPreviousWorkouts(String n){
+    try{
+      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktId DESC LIMIT ?) AS AllRows ORDER BY TreningsøktId ASC");
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    try{
+      regStatement.setInt(1, Integer.parseInt(n));
+      ResultSet rs = regStatement.executeQuery();
+      List<Workout> workouts = new ArrayList<Workout>();
+      Calendar tzCal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
+      while (rs.next()) {
+        Workout workout = new Workout(rs.getString("Dato"),
+                        rs.getTime("Varighet", tzCal), rs.getInt("PersonligForm"),
+                        rs.getInt("Prestasjon"), rs.getString("Notat"));
+        workouts.add(workout);
+      }
+      return workouts;
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+  }
+
 }
