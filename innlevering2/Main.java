@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class Main{
+public class Main {
 	public WorkoutCtrl workoutCtrl = new WorkoutCtrl();
 	private Scanner input = new Scanner(System.in);
-	
+
 	//private String state = new String;
 	public void skrevetFeil() {
 		System.out.println("Velg en av kommandoene over ^");
 	}
-	
+
 	public ArrayList<String> stringToList(String string) { // skal ikke være void, men må ha ...args ellerno så den kan returnere ulikt antall variabler.
 		if (string.contains(", ")) {
 			ArrayList<String> l = new ArrayList<>(Arrays.asList(string.split(", ")));
@@ -26,12 +26,12 @@ public class Main{
 			return null; //??
 		}
 	}
-	
+
 	public void velkommen() {
 		System.out.println("Hei og velkommen til din treningsdagbok!"
 				+ "Vil du 'lage ny treningsøkt' eller 'se treningslogg'? Skriv inn ditt valg.");
 		String choosing = input.nextLine();
-		
+
 		if (choosing.equals("lage ny treningsøkt")) {
 			createExersice();
 		}
@@ -48,12 +48,9 @@ public class Main{
 		// ArrayList<String> retursvar = new ArrayList<String>();
 		System.out.println("skriv inn følgende felter separert med komma og mallomrom: ");
 		System.out.println("bla, bla, bla, bla, blabla");
-		System.out.println("Eller skriv 'tilbake' for å gå tilbake");
+		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = input.nextLine();
-		ArrayList<String> retursvar = this.stringToList(svar);
-//		if (svar.contains(',')) {
-//			retursvar = svar.split(',')
-//		}
+		ArrayList<String> retursvar = this.stringToList(svar); // får null hvis uten ','
 		if (svar.equals("tilbake") || svar.equals("Tilbake")) {
 			velkommen();
 		}
@@ -88,10 +85,10 @@ public class Main{
 		System.out.println("For å se de n sistetreningsøktene, skriv skriv inn antall n.");
 		System.out.println("For å se på én av dem, skriv inn når treningsøkten var.");
 		System.out.println("For å se treningsøktene i en gitt tidsperiode, skrif inn 'fra'-'til'");
-		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: Endre dette riktig da
+		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = this.input.nextLine();
-		
+
 		if (svar.equals("tilbake")) {
 			velkommen();
 		}
