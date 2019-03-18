@@ -24,5 +24,8 @@ public class Main{
     catch(IllegalArgumentException e){
       System.out.println(e.getLocalizedMessage());
     }
+    getExcercisesByGroup getex = new getExcercisesByGroup();
+    System.out.println("-----------------------");
+    System.out.println(getex.getByID("1"));
   }
 }
