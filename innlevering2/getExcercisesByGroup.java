@@ -12,7 +12,7 @@ public class getExcercisesByGroup extends DBConnect{
 
   public String getByID(String id) throws SQLException{
     Integer idInt = Integer.parseInt(id);
-    regStatement = connection.prepareStatement("SELECT * FROM Ã˜velse NATURAL JOIN Ã˜velsesGruppe NATURAL JOIN Ã˜velseIÃ˜velsesgruppe WHERE Ã˜velseID = ?");
+    regStatement = connection.prepareStatement("SELECT * FROM Øvelse NATURAL JOIN ØvelsesGruppe NATURAL JOIN Øvelsesgruppe WHERE ØvelseID = ?");
     regStatement.setInt(1, idInt);
     ResultSet result = regStatement.executeQuery();
     
