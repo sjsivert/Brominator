@@ -29,12 +29,12 @@ INSERT INTO ØvelseIØvelsesgruppe (ØvelseID, ØvelsesgruppeID) VALUES (4, 1);
 INSERT INTO Treningsøkt (TreningsøktID, Dato, Varighet, PersonligForm, Prestasjon, Notat) VALUES (1, '2018-10-25 11:30:45', '01:30:00', 7, 5, 'Dette var en ganske fin treningsøkt, men jeg ble ganske sliten. Gjorde roing, armhevninger og situps');
 
 
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 1, 35, 4, 4);
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 2, 0, 4, 15);
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 3, 0, 4, 15);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 1, 35, 4, 4);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 2, 0, 4, 15);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (1, 3, 0, 4, 15);
 
 INSERT INTO Treningsøkt (TreningsøktID, Dato, Varighet, PersonligForm, Prestasjon, Notat) VALUES (2, '2018-10-30 17:30:00', '01:30:00', 8, 6, 'Samme økt som forrige gang. Gjorde roing, armhevninger og situps. Økte litt antall reps på situps og antall kilo på roing');
 
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 1, 50, 4, 4);
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 2, 0, 4, 15);
-INSERT INTO ØvelseITreningsøkt (TreningsID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 3, 0, 4, 25);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 1, 50, 4, 4);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 2, 0, 4, 15);
+INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (2, 3, 0, 4, 25);
