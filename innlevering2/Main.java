@@ -127,8 +127,8 @@ public class Main {
 
 		try{
 		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
-		      main.workoutCtrl.saveObject(workout);
-		      workout = main.workoutCtrl.getObject("1");
+		      main.workoutCtrl.saveWorkout(workout);
+		      workout = main.workoutCtrl.getWorkout("1");
 		      System.out.println(workout);
 		    }
 		    catch(IllegalArgumentException e){
