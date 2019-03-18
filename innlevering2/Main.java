@@ -15,7 +15,7 @@ public class Main {
 
 	//private String state = new String;
 	public void skrevetFeil() {
-		System.out.println("Velg en av kommandoene over ^");
+		System.out.println("Du kan ha skrevet noe feil. Se beskrivelse over ^");
 	}
 
 	public ArrayList<String> stringToList(String string) { // skal ikke være void, men må ha ...args ellerno så den kan returnere ulikt antall variabler.
@@ -48,21 +48,28 @@ public class Main {
 		// gå inn til å lage / tilbake
 		// ArrayList<String> retursvar = new ArrayList<String>();
 		System.out.println("skriv inn følgende felter separert med komma og mallomrom: ");
-		System.out.println("bla, bla, bla, bla, blabla");
+		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = input.nextLine();
 		ArrayList<String> retursvar = this.stringToList(svar); // får null hvis uten ','
 		if (svar.equals("tilbake") || svar.equals("Tilbake")) {
 			velkommen();
 		}
-		else if (retursvar.size() == 12){ // Må endres
+		else if (retursvar.size() == 5){ // Må endres
+			System.out.println("Er dette informasjonen du vil sende inn til databasen?");
+			for (String i : retursvar) {
+  			System.out.println(i);
+			}
 			// validere og sende retursvar til backend for å lage ny exercise
 			try {
-			    // å lage exercise
-			} catch(RuntimeException e) {
-			    System.out.println("oi, noe gikk visst galt, prøv på nytt");
-			    this.createExersice();
+			    // TODO å lage exercise
+			} catch(Exception e) {
+
+					System.out.println("oi, noe gikk visst galt, prøv på nytt");
+			    System.out.println("");
+			    createExersice();
 			}
+
 			velkommen();
 		}
 		else {
@@ -127,8 +134,8 @@ public class Main {
 
 		try{
 		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
-		      main.workoutCtrl.saveObject(workout);
-		      workout = main.workoutCtrl.getObject("1");
+		      main.workoutCtrl.saveWorkout(workout);
+		      workout = main.workoutCtrl.getWorkout("1");
 		      System.out.println(workout);
 		    }
 		    catch(IllegalArgumentException e){
