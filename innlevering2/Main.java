@@ -10,7 +10,10 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
-	public WorkoutCtrl workoutCtrl = new WorkoutCtrl();
+	private ExcerciseGroupCtrl excerciseGroupCtrl = new ExcerciseGroupCtrl();
+	private ExerciseCtrl exerciseCtrl = new ExerciseCtrl();
+	private WorkoutCtrl workoutCtrl = new WorkoutCtrl();
+	private DeviceCtrl deviceCtrl = new DeviceCtrl();
 	private Scanner input = new Scanner(System.in);
 
 	//private String state = new String;
