@@ -11,7 +11,7 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
 
     public String getResultsInInterval(String exerciseId, String date1, String date2){
     try{
-	getStatement = connection.prepareStatement("select Navn, Dato, kilo, antallsett, antallreps from Treningsøkt natural join øvelseItreningsøkt natural join øvelse where (dato between " + date1 + " and " + date2 + ") and ØvelseID=" + exerciseId + " ORDER BY Dato ASC");
+	getStatement = connection.prepareStatement("select Navn, Dato, kilo, antallsett, antallreps from Treningsøkt natural join øvelseItreningsøkt natural join øvelse where (dato between '" + date1 + "' and '" + date2 + "') and ØvelseID=" + exerciseId + " ORDER BY Dato ASC");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -24,9 +24,9 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
 	  output += "-----------------------------" +
 	      rs.getString("Navn") + "\n" +
 	      rs.getString("Dato").substring(0, 16) + "\n" +
-	      "Antall kilo: " + rs.getBoolean("kilo") + "\n" +
-	      "Antall sett: " + rs.getBoolean("antallsett") + "\n" +
-	      "Antall reps: " + rs.getBoolean("antallreps") + "\n";
+	      "Antall kilo: " + rs.getInt("kilo") + "\n" +
+	      "Antall sett: " + rs.getInt("antallsett") + "\n" +
+	      "Antall reps: " + rs.getInt("antallreps") + "\n";
       }
     return output;
     }

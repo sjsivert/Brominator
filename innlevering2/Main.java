@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Main {
 	public WorkoutCtrl workoutCtrl = new WorkoutCtrl();
 	private Scanner input = new Scanner(System.in);
+        public ExerciseCtrl exerciseCtrl  = new ExerciseCtrl();
 
 	//private String state = new String;
 	public void skrevetFeil() {
@@ -122,12 +123,8 @@ public class Main {
 	public void getExercises() {
 		// Vise treningsøktene basert på id
 		// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
-		System.out.println("Dette er alle treningsøktene:");
-		displayAllExercises();
-		System.out.println("For å se på én av dem, skriv inn ID");
 		System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
-		System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
-		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
+		System.out.println("For å se på en øvelse i en gitt tidsperiode, skriv inn 'tidsperiode'");
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = this.input.nextLine();
 
@@ -135,19 +132,33 @@ public class Main {
 			velkommen();
 		}
 		else if (svar.equals("n")) {
-			String tall = this.input.nextLine();
-			if (svar.matches("[0-9]+") && svar.length() > 0) {
-				// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
-				displayNExercises(svar);
-			}
+		    System.out.println("Skriv inn antall du vil ha ut");
+		    String tall = this.input.nextLine();
+		    if (svar.matches("[0-9]+") && svar.length() > 0) {
+			// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
+			displayNExercises(svar);
+		    }
+		    else {
+			System.out.println("Det var ikke et tall.");
+		    }
 		}
-
-
-		else if (svar.length()==14) {
-			// én treningsøkt
-			// teste om ikke det er en valid date med en treningsøkt
-			// hente ut treningsøkten
-			// displaye det med litt mer info kanskje?
+		else if (svar.equals("tidsperiode")) {
+		    System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
+		    System.out.print("Finn øvelse fra: ");
+		    String date1 = this.input.nextLine();
+		    System.out.print("Finn øvelse til: ");
+		    String date2 = this.input.nextLine();
+		    System.out.println(exerciseCtrl.getAllExercises());
+		    System.out.print("ØvselsesID: ");
+		    String exerciseId = this.input.nextLine();
+		    try{
+			ExerciseInWorkoutCtrl ctrl = new ExerciseInWorkoutCtrl();
+			String to_screen = ctrl.getResultsInInterval(exerciseId, date1, date2);
+			System.out.println(to_screen);
+		    }
+		    catch(IllegalArgumentException e){
+			System.out.println(e);
+		    }
 
 		}
 		else if (svar.length()==29) {
