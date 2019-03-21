@@ -63,17 +63,17 @@ public class Main {
 			}
 			// validere og sende retursvar til backend for å lage ny exercise
 			String validering = input.nextLine();
-			if (validering == "ja") {
+			if (validering.equals("ja")) {
 				try {
 				    // TODO å lage exercise
 					Workout workout = new Workout(retursvar.get(0), retursvar.get(1), retursvar.get(2), retursvar.get(3), retursvar.get(4));
 					this.workoutCtrl.saveWorkout(workout);
 				} catch(Exception e) {
-						System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
+					System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
 				    createExersice();
 				}
 			}
-			else if (validering == "nei"){
+			else if (validering.equals("nei")){
 				velkommen();
 			}
 			else {
@@ -92,8 +92,8 @@ public class Main {
 		this.workoutCtrl.getNPreviousWorkouts("9999");
 	}
 
-	public void displaySomeExercises() {
-		// viser et par fler detaljer enn displayAllExercises
+	public void displayNExercises(String n) {
+		this.workoutCtrl.getNPreviousWorkouts(n);
 	}
 	
 	public void displayOneExercise() {
@@ -105,8 +105,8 @@ public class Main {
 		// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
 		System.out.println("Dette er alle treningsøktene:");
 		displayAllExercises();
-		System.out.println("For å se på én av dem, skriv inn ID-nummer.");
-		System.out.println("For å se de n sistetreningsøktene, skriv skriv inn antall n.");
+		System.out.println("For å se på én av dem, skriv inn ID");
+		System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
 		System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
 		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
@@ -115,10 +115,15 @@ public class Main {
 		if (svar.equals("tilbake")) {
 			velkommen();
 		}
-		else if (svar.matches("[0-9]+") && svar.length() > 0) {
-			// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
-			// display dem med litt mer info kanskje?
+		else if (svar.equals("n")) {
+			String tall = this.input.nextLine();
+			if (svar.matches("[0-9]+") && svar.length() > 0) {
+				// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
+				displayNExercises(svar);
+			}
 		}
+		
+		
 		else if (svar.length()==14) {
 			// én treningsøkt
 			// teste om ikke det er en valid date med en treningsøkt
