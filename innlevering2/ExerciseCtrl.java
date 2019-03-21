@@ -13,7 +13,7 @@ public class ExerciseCtrl extends DBConnect{
   public String regExercise(String Navn, String Beskrivelse, boolean HarApparat, String ApparatID){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Øvelse (Navn, Beskrivelse, HarApparat, ApparatID) VALUES (?, ?, ?, ?)");
-      getStatement = connection.prepareStatement("SELECT * FROM Øvelset ORDER BY ØvelseID DESC LIMIT 1");
+      getStatement = connection.prepareStatement("SELECT * FROM Øvelse ORDER BY ØvelseID DESC LIMIT 1");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -39,7 +39,7 @@ public class ExerciseCtrl extends DBConnect{
   public String regExercise(String Navn, String Beskrivelse, boolean HarApparat){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Øvelse (Navn, Beskrivelse, HarApparat) VALUES (?, ?, ?)");
-      getStatement = connection.prepareStatement("SELECT * FROM Øvelset ORDER BY ØvelseID DESC LIMIT 1");
+      getStatement = connection.prepareStatement("SELECT * FROM Øvelse ORDER BY ØvelseID DESC LIMIT 1");
     }
     catch(Exception e){
       throw new RuntimeException(e);

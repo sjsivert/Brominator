@@ -93,15 +93,15 @@ public class Main {
     private void registerExerciseToGroups(String exerciseId) {
 	while (true) {
 	    System.out.println(exerciseGroupCtrl.getAll());
-	    System.out.print("Skriv inn id på gruppen du vil koble øvelsen til: ");
 	    System.out.print("Skriv inn id på gruppen du vil koble øvelsen til (enter når du er ferdig): ");
 	    String groupId = input.nextLine();
-	    if (exerciseId.equals("")) {
+	    if (groupId.equals("")) {
 		break;
 	    }
 	    System.out.print("------------------------------------------------");
 	    try {
-		// Gjør dette
+		exerciseGroupCtrl.regExerciseToGroup(exerciseId, groupId);
+		System.out.println("Den ble lagt til");
 	    }
 	    catch (Exception e) {
 		System.out.println("Noe gikk galt");
