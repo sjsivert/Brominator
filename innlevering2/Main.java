@@ -49,6 +49,7 @@ public class Main {
 		// ArrayList<String> retursvar = new ArrayList<String>();
 		System.out.println("skriv inn følgende felter separert med komma og mallomrom: ");
 		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
+		System.out.println("(Format på tid er: 'yyyy-mm-dd hh:mm')");
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = input.nextLine();
 		ArrayList<String> retursvar = this.stringToList(svar); // får null hvis uten ','
@@ -58,15 +59,13 @@ public class Main {
 		else if (retursvar.size() == 5){ // Må endres
 			System.out.println("Er dette informasjonen du vil sende inn til databasen?");
 			for (String i : retursvar) {
-  			System.out.println(i);
+				System.out.println(i);
 			}
 			// validere og sende retursvar til backend for å lage ny exercise
 			try {
 			    // TODO å lage exercise
 			} catch(Exception e) {
-
-					System.out.println("oi, noe gikk visst galt, prøv på nytt");
-			    System.out.println("");
+					System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
 			    createExersice();
 			}
 
@@ -131,7 +130,7 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 		Main main = new Main();
 		main.velkommen();
-
+		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
 		try{
 		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
 		      main.workoutCtrl.saveWorkout(workout);
