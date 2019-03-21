@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.TimeZone;
 import java.util.Calendar;
 
-public class getExcercisesByGroup extends DBConnect{
+public class ExcerciseGroupCtrl extends DBConnect{
 
   private PreparedStatement regStatement;
 
@@ -23,6 +23,30 @@ public class getExcercisesByGroup extends DBConnect{
     	stringResult = stringResult + str;
     }
     return stringResult;
+  }
+  
+  public String createGroup(String name) {
+	  try {
+		regStatement =  connection.prepareStatement("INSERT INTO ØvelsesGruppe (Navn) VALUES (?)");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  try {
+		regStatement.setString(1, name);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  try {
+		ResultSet result = regStatement.executeQuery();
+		return "Gruppe laget";
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "Noe gikk galt";
   }
 
 }
