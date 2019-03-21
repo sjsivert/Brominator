@@ -62,12 +62,23 @@ public class Main {
 				System.out.println(i);
 			}
 			// validere og sende retursvar til backend for å lage ny exercise
-			try {
-			    // TODO å lage exercise
-			} catch(Exception e) {
-					System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
-			    createExersice();
+			String validering = input.nextLine();
+			if (validering == "ja") {
+				try {
+				    // TODO å lage exercise
+					Workout workout = new Workout(retursvar.get(0), retursvar.get(1), retursvar.get(2), retursvar.get(3), retursvar.get(4));
+				} catch(Exception e) {
+						System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
+				    createExersice();
+				}
 			}
+			else if (validering == "nei"){
+				velkommen();
+			}
+			else {
+				skrevetFeil();
+			}
+			
 
 			velkommen();
 		}
