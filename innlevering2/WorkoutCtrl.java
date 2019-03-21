@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class WorkoutCtrl extends DBConnect{
 
   private PreparedStatement regStatement;
+  private PreparedStatement getStatement;
 
   public boolean saveWorkout(Workout workout){
     try{
@@ -59,14 +60,40 @@ public class WorkoutCtrl extends DBConnect{
 
   public String getNPreviousWorkouts(String n){
     try{
-      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID DESC");
+      getStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID DESC");
     }
     catch(Exception e){
       throw new RuntimeException(e);
     }
     try{
-      regStatement.setInt(1, Integer.parseInt(n));
-      ResultSet rs = regStatement.executeQuery();
+      getStatement.setInt(1, Integer.parseInt(n));
+      ResultSet rs = getStatement.executeQuery();
+      Calendar tzCal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
+      String output = "";
+      while (rs.next()) {
+        output += "-----------------------------" +
+                  rs.getString("Dato").substring(0, 16) + "\n" +
+                  "Varighet: " + rs.getTime("Varighet", tzCal).toString().substring(0, 5) + "\n" +
+                  "Personlig form: " + rs.getInt("PersonligForm") + "\n" +
+                  "Prestasjon: " + rs.getInt("Prestasjon") + "\n" +
+                  "Notat: " + rs.getString("Notat") + "\n";
+      }
+      return output;
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+  }
+
+  public String getAllWorkouts(){
+    try{
+      getStatement = connection.prepareStatement("SELECT * FROM Treningsøkt ORDER BY Dato ASC");
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    try{
+      ResultSet rs = getStatement.executeQuery();
       Calendar tzCal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
       String output = "";
       while (rs.next()) {

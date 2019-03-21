@@ -140,8 +140,8 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 
 		try{
-		      ExerciseCtrl dc = new ExerciseCtrl();
-					System.out.println(dc.getAllExercises());
+		      WorkoutCtrl dc = new WorkoutCtrl();
+					System.out.println(dc.getAllWorkouts());
 		    }
 		    catch(IllegalArgumentException e){
 		      System.out.println(e.getLocalizedMessage());
