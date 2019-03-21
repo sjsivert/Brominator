@@ -67,6 +67,7 @@ public class Main {
 				try {
 				    // TODO å lage exercise
 					Workout workout = new Workout(retursvar.get(0), retursvar.get(1), retursvar.get(2), retursvar.get(3), retursvar.get(4));
+					this.workoutCtrl.saveWorkout(workout);
 				} catch(Exception e) {
 						System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
 				    createExersice();
@@ -88,11 +89,15 @@ public class Main {
 	}
 
 	public void displayAllExercises() {
-		// Viser bare tiden treningøkta var, evt tittel (?)
+		this.workoutCtrl.getNPreviousWorkouts("9999");
 	}
 
 	public void displaySomeExercises() {
 		// viser et par fler detaljer enn displayAllExercises
+	}
+	
+	public void displayOneExercise() {
+		
 	}
 
 	public void getExercises() {
@@ -100,9 +105,9 @@ public class Main {
 		// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
 		System.out.println("Dette er alle treningsøktene:");
 		displayAllExercises();
+		System.out.println("For å se på én av dem, skriv inn ID-nummer.");
 		System.out.println("For å se de n sistetreningsøktene, skriv skriv inn antall n.");
-		System.out.println("For å se på én av dem, skriv inn når treningsøkten var.");
-		System.out.println("For å se treningsøktene i en gitt tidsperiode, skrif inn 'fra'-'til'");
+		System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
 		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = this.input.nextLine();
@@ -115,9 +120,11 @@ public class Main {
 			// display dem med litt mer info kanskje?
 		}
 		else if (svar.length()==14) {
+			// én treningsøkt
 			// teste om ikke det er en valid date med en treningsøkt
 			// hente ut treningsøkten
 			// displaye det med litt mer info kanskje?
+			
 		}
 		else if (svar.length()==29) {
 			// teste om ikke de er på valid date form (må ikke være dato til treningsøkter)

@@ -72,6 +72,7 @@ public class WorkoutCtrl extends DBConnect{
       while (rs.next()) {
         output += "-----------------------------" +
                   rs.getString("Dato").substring(0, 16) + "\n" +
+                  "ID: " + rs.getInt("TreningsøktID") + "\n" +
                   "Varighet: " + rs.getTime("Varighet", tzCal).toString().substring(0, 5) + "\n" +
                   "Personlig form: " + rs.getInt("PersonligForm") + "\n" +
                   "Prestasjon: " + rs.getInt("Prestasjon") + "\n" +
