@@ -10,9 +10,10 @@ public class ExerciseCtrl extends DBConnect{
   private PreparedStatement regStatement;
   private PreparedStatement getStatement;
 
-  public boolean regExercise(String Navn, String Beskrivelse, boolean HarApparat, String ApparatID){
+  public String regExercise(String Navn, String Beskrivelse, boolean HarApparat, String ApparatID){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Øvelse (Navn, Beskrivelse, HarApparat, ApparatID) VALUES (?, ?, ?, ?)");
+      getStatement = connection.prepareStatement("SELECT * FROM Øvelset ORDER BY ØvelseID DESC LIMIT 1");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -23,6 +24,12 @@ public class ExerciseCtrl extends DBConnect{
       regStatement.setBoolean(3, HarApparat);
       regStatement.setInt(4, Integer.parseInt(ApparatID));
       regStatement.execute();
+      ResultSet rs = getStatement.executeQuery();
+      String id = null;
+      while (rs.next()) {
+        id = rs.getString("ØvelseID");
+      }
+      return id;
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -30,9 +37,10 @@ public class ExerciseCtrl extends DBConnect{
     return true;
   }
 
-  public boolean regExercise(String Navn, String Beskrivelse, boolean HarApparat){
+  public String regExercise(String Navn, String Beskrivelse, boolean HarApparat){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Øvelse (Navn, Beskrivelse, HarApparat) VALUES (?, ?, ?)");
+      getStatement = connection.prepareStatement("SELECT * FROM Øvelset ORDER BY ØvelseID DESC LIMIT 1");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -42,6 +50,12 @@ public class ExerciseCtrl extends DBConnect{
       regStatement.setString(2, Beskrivelse);
       regStatement.setBoolean(3, HarApparat);
       regStatement.execute();
+      ResultSet rs = getStatement.executeQuery();
+      String id = null;
+      while (rs.next()) {
+        id = rs.getString("ØvelseID");
+      }
+      return id;
     }
     catch(Exception e){
       throw new RuntimeException(e);
