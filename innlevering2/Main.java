@@ -122,14 +122,10 @@ public class Main {
 //	}
 
 	public static void main(String[] args) throws Exception{
-		Main main = new Main();
-		main.velkommen();
 
 		try{
-		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
-		      main.workoutCtrl.saveWorkout(workout);
-		      workout = main.workoutCtrl.getWorkout("1");
-		      System.out.println(workout);
+		      ExerciseCtrl dc = new ExerciseCtrl();
+					System.out.println(dc.getAllExercises());
 		    }
 		    catch(IllegalArgumentException e){
 		      System.out.println(e.getLocalizedMessage());
