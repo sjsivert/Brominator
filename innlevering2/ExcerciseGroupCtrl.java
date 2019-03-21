@@ -45,7 +45,6 @@ public class ExcerciseGroupCtrl extends DBConnect{
 
   }
 
-<<<<<<< HEAD
 	public boolean regExerciseToGroup(String exerciseId, String groupId){
     try{
       regStatement = connection.prepareStatement("INSERT INTO ØvelseIØvelsesgruppe (ØvelseID, ØvelsesgruppeID) VALUES (?, ?)");
@@ -64,8 +63,6 @@ public class ExcerciseGroupCtrl extends DBConnect{
     return true;
   }
 
-=======
->>>>>>> 69573aa6e483635f22f91429f190a51f4d994cc0
 
   public String createGroup(String name) {
 	  // TODO: Sjekke at gruppen ikke finnes fra før

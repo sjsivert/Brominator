@@ -34,7 +34,6 @@ public class ExerciseCtrl extends DBConnect{
     catch(Exception e){
       throw new RuntimeException(e);
     }
-    return true;
   }
 
   public String regExercise(String Navn, String Beskrivelse, boolean HarApparat){
@@ -60,7 +59,6 @@ public class ExerciseCtrl extends DBConnect{
     catch(Exception e){
       throw new RuntimeException(e);
     }
-    return true;
   }
 
   public String getAllExercises(){
