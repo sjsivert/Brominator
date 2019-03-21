@@ -73,4 +73,6 @@ public class ExerciseCtrl extends DBConnect{
       throw new RuntimeException(e);
     }
   }
+
+
 }
