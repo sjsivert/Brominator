@@ -39,9 +39,25 @@ public class Main {
 		else if (choosing.equals("se treningslogg")){
 			getExercises();
 		}
+		else if (choosing.equals("lag ny gruppe")) {
+			createGroup();
+		}
 		else {
 			skrevetFeil();
 		}
+	}
+
+	private void createGroup() {
+		// TODO Auto-generated method stub
+		System.out.print("Skriv inn navn på Treningsgruppen (EKS: Bein, Armer, rygg etc): ");
+		String svar = input.nextLine();
+		ExcerciseGroupCtrl groupCtrl = new ExcerciseGroupCtrl();
+		try {
+			System.out.println(groupCtrl.createGroup(svar));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		velkommen();
 	}
 
 	public void createExersice() {
