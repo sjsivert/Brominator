@@ -64,4 +64,25 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
       throw new RuntimeException(e);
     }
   }
+
+  public boolean regExerciseInWorkout(String treningsøktId, String øvelseId, String kilo, String antallSett, String antallReps){
+    try{
+      regStatement = connection.prepareStatement("INSERT INTO ØvelseITreningsøkt (TreningsøktID, ØvelseID, Kilo, AntallSett, AntallReps) VALUES (?, ?, ?, ?, ?)");
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    try{
+      regStatement.setInt(1, treningsøktId);
+      regStatement.setInt(2, øvelseId);
+      regStatement.setInt(3, kilo);
+      regStatement.setInt(4, antallSett);
+      regStatement.setInt(5, antallReps);
+      regStatement.execute();
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    return true;
+  }
 }
