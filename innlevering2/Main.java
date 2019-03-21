@@ -31,16 +31,16 @@ public class Main {
 
 	public void velkommen() {
 		System.out.println("Hei og velkommen til din treningsdagbok!"
-				+ "Vil du 'lage ny treningsøkt' eller 'se treningslogg'? Skriv inn ditt valg.");
+				+ "Vil du 'lage ny treningsøkt', 'lage ny gruppe', 'se treningslogg'? Skriv inn ditt valg.");
 		String choosing = input.nextLine();
 
 		if (choosing.equals("lage ny treningsøkt")) {
-			createExersice();
+		        createWorkout();
 		}
 		else if (choosing.equals("se treningslogg")){
 			getExercises();
 		}
-		else if (choosing.equals("lag ny gruppe")) {
+		else if (choosing.equals("lage ny gruppe")) {
 			createGroup();
 		}
 		else {
@@ -61,7 +61,7 @@ public class Main {
 		velkommen();
 	}
 
-	public void createExersice() {
+	public void createWorkout() {
 		// gå inn til å lage / tilbake
 		// ArrayList<String> retursvar = new ArrayList<String>();
 		System.out.println("skriv inn følgende felter separert med komma og mallomrom: ");
@@ -89,7 +89,7 @@ public class Main {
 				} catch(Exception e) {
 				    System.out.println(e);
 				    System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
-				    createExersice();
+				    createWorkout();
 				}
 			}
 			else if (validering.equals("nei")){
@@ -104,7 +104,7 @@ public class Main {
 		}
 		else {
 		     System.out.println("Feil antall argumenter");
-		     createExersice();
+		     createWorkout();
 		}
 	}
 
