@@ -26,6 +26,7 @@ public class ExcerciseGroupCtrl extends DBConnect{
   }
   
   public String createGroup(String name) {
+	  // TODO: Sjekke at gruppen ikke finnes fra før
 	  try {
 		regStatement =  connection.prepareStatement("INSERT INTO ØvelsesGruppe (Navn) VALUES (?)");
 	} catch (SQLException e) {
