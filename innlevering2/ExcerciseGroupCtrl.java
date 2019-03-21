@@ -38,12 +38,30 @@ public class ExcerciseGroupCtrl extends DBConnect{
 		e.printStackTrace();
 		System.out.println("Noe gikk galt");
 	}
-	 
+
 	return result;
-	 
+
 
   }
-	  
+
+	public boolean regExerciseToGroup(String exerciseId, String groupId){
+    try{
+      regStatement = connection.prepareStatement("INSERT INTO ØvelseIØvelsesgruppe (ØvelseID, ØvelsesgruppeID) VALUES (?, ?)");
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    try{
+      regStatement.setInt(1, Integer.parseInt(exerciseId));
+      regStatement.setInt(2, Integer.parseInt(groupId));
+      regStatement.execute();
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    return true;
+  }
+
 
   public String createGroup(String name) {
 	  // TODO: Sjekke at gruppen ikke finnes fra før
