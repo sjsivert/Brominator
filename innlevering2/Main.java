@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
-    private ExcerciseGroupCtrl excerciseGroupCtrl = new ExcerciseGroupCtrl();
+    private ExerciseGroupCtrl exerciseGroupCtrl = new ExerciseGroupCtrl();
     private ExerciseCtrl exerciseCtrl = new ExerciseCtrl();
     private WorkoutCtrl workoutCtrl = new WorkoutCtrl();
     private DeviceCtrl deviceCtrl = new DeviceCtrl();
@@ -49,11 +49,11 @@ public class Main {
     }
 
     public void getExerciseByGroup() {
-	System.out.println(excerciseGroupCtrl.getAll());
+	System.out.println(exerciseGroupCtrl.getAll());
 	System.out.print("Skriv inn en øvelsesID: ");
 	String id = input.nextLine();
 	try {
-	    System.out.println(excerciseGroupCtrl.getByID(id));
+	    System.out.println(exerciseGroupCtrl.getByID(id));
 	}
 	catch (Exception e) {
 	    System.out.println("Noe gikk galt");
@@ -150,7 +150,7 @@ public class Main {
 	// TODO Auto-generated method stub
 	System.out.print("Skriv inn navn på Treningsgruppen (EKS: Bein, Armer, rygg etc): ");
 	String svar = input.nextLine();
-	ExcerciseGroupCtrl groupCtrl = new ExcerciseGroupCtrl();
+	ExerciseGroupCtrl groupCtrl = new ExerciseGroupCtrl();
 	try {
 	    System.out.println(groupCtrl.createGroup(svar));
 	} catch (Exception e) {

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.TimeZone;
 import java.util.Calendar;
 
-public class ExcerciseGroupCtrl extends DBConnect{
+public class ExerciseGroupCtrl extends DBConnect{
 
   private PreparedStatement regStatement;
 
