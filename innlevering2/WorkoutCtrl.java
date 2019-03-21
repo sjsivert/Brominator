@@ -60,7 +60,11 @@ public class WorkoutCtrl extends DBConnect{
 
   public String getNPreviousWorkouts(String n){
     try{
+<<<<<<< HEAD
       getStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY TreningsøktID DESC");
+=======
+      regStatement = connection.prepareStatement("SELECT * FROM (SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT ?) AS AllRows ORDER BY Dato ASC");
+>>>>>>> show_data_in_frontend
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -99,6 +103,7 @@ public class WorkoutCtrl extends DBConnect{
       while (rs.next()) {
         output += "-----------------------------" +
                   rs.getString("Dato").substring(0, 16) + "\n" +
+                  "ID: " + rs.getInt("TreningsøktID") + "\n" +
                   "Varighet: " + rs.getTime("Varighet", tzCal).toString().substring(0, 5) + "\n" +
                   "Personlig form: " + rs.getInt("PersonligForm") + "\n" +
                   "Prestasjon: " + rs.getInt("Prestasjon") + "\n" +

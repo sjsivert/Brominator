@@ -9,9 +9,9 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
 
   private PreparedStatement getStatement;
 
-  public String getResultsInInterval(String date1, String date2){
+    public String getResultsInInterval(String exerciseId, String date1, String date2){
     try{
-      getStatement = connection.prepareStatement("SELECT * FROM ((SELECT * FROM Treningsøkt WHERE Dato BETWEEN '" + date1 + "' AND '" + date2 + "') AS Treningsøkter NATURAL JOIN Øvelse) ORDER BY Dato DESC");
+	getStatement = connection.prepareStatement("select Navn, Dato, kilo, antallsett, antallreps from Treningsøkt natural join øvelseItreningsøkt natural join øvelse where (dato between " + date1 + " and " + date2 + ") and ØvelseID=" + exerciseId + " ORDER BY Dato ASC");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -21,16 +21,12 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
       ResultSet rs = getStatement.executeQuery();
       Calendar tzCal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
       while (rs.next()) {
-
-              output += "-----------------------------" +
-                        rs.getString("Dato").substring(0, 16) + " " + rs.getString("Navn") + "\n" +
-                        "Varighet: " + rs.getTime("Varighet", tzCal).toString().substring(0, 5) + "\n" +
-                        "Personlig form: " + rs.getInt("PersonligForm") + "\n" +
-                        "Prestasjon: " + rs.getInt("Prestasjon") + "\n" +
-                        "Notat: " + rs.getString("Notat") + "\n" +
-                        "Øvelsesbeskrivelse: " + rs.getString("Beskrivelse") + "\n" +
-                        "HarApparat: " + rs.getBoolean("HarApparat") + "\n" +
-                        "ApparatID: " + rs.getInt("ApparatID") + "\n";
+	  output += "-----------------------------" +
+	      rs.getString("Navn") + "\n" +
+	      rs.getString("Dato").substring(0, 16) + "\n" +
+	      "Antall kilo: " + rs.getBoolean("kilo") + "\n" +
+	      "Antall sett: " + rs.getBoolean("antallsett") + "\n" +
+	      "Antall reps: " + rs.getBoolean("antallreps") + "\n";
       }
     return output;
     }

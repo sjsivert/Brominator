@@ -15,7 +15,7 @@ public class Main {
 
 	//private String state = new String;
 	public void skrevetFeil() {
-		System.out.println("Velg en av kommandoene over ^");
+		System.out.println("Du kan ha skrevet noe feil. Se beskrivelse over ^");
 	}
 
 	public ArrayList<String> stringToList(String string) { // skal ikke være void, men må ha ...args ellerno så den kan returnere ulikt antall variabler.
@@ -64,34 +64,59 @@ public class Main {
 		// gå inn til å lage / tilbake
 		// ArrayList<String> retursvar = new ArrayList<String>();
 		System.out.println("skriv inn følgende felter separert med komma og mallomrom: ");
-		System.out.println("bla, bla, bla, bla, blabla");
+		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
+		System.out.println("(Format på tid er: 'yyyy-mm-dd hh:mm')");
+		System.out.println("(Tiden på økten gis i antall minutter)");
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = input.nextLine();
 		ArrayList<String> retursvar = this.stringToList(svar); // får null hvis uten ','
 		if (svar.equals("tilbake") || svar.equals("Tilbake")) {
 			velkommen();
 		}
-		else if (retursvar.size() == 12){ // Må endres
-			// validere og sende retursvar til backend for å lage ny exercise
-			try {
-			    // å lage exercise
-			} catch(RuntimeException e) {
-			    System.out.println("oi, noe gikk visst galt, prøv på nytt");
-			    this.createExersice();
+		else if (retursvar.size() == 5){ // Må endres
+			System.out.println("Er dette informasjonen du vil sende inn til databasen?");
+			for (String i : retursvar) {
+				System.out.println(i);
 			}
+			// validere og sende retursvar til backend for å lage ny exercise
+			String validering = input.nextLine();
+			if (validering.equals("ja")) {
+				try {
+				    // TODO å lage exercise
+					Workout workout = new Workout(retursvar.get(0), retursvar.get(1), retursvar.get(2), retursvar.get(3), retursvar.get(4));
+					this.workoutCtrl.saveWorkout(workout);
+				} catch(Exception e) {
+				    System.out.println(e);
+				    System.out.println("Fikk ikke laget treningsøkt, prøv på nytt");
+				    createExersice();
+				}
+			}
+			else if (validering.equals("nei")){
+				velkommen();
+			}
+			else {
+			    System.out.println("Skriv 'ja' eller 'nei'");
+			}
+
+
 			velkommen();
 		}
 		else {
-			skrevetFeil();
+		     System.out.println("Feil antall argumenter");
+		     createExersice();
 		}
 	}
 
 	public void displayAllExercises() {
-		// Viser bare tiden treningøkta var, evt tittel (?)
+	    System.out.println(this.workoutCtrl.getNPreviousWorkouts("9999"));
 	}
 
-	public void displaySomeExercises() {
-		// viser et par fler detaljer enn displayAllExercises
+	public void displayNExercises(String n) {
+		this.workoutCtrl.getNPreviousWorkouts(n);
+	}
+
+	public void displayOneExercise() {
+
 	}
 
 	public void getExercises() {
@@ -99,9 +124,9 @@ public class Main {
 		// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
 		System.out.println("Dette er alle treningsøktene:");
 		displayAllExercises();
-		System.out.println("For å se de n sistetreningsøktene, skriv skriv inn antall n.");
-		System.out.println("For å se på én av dem, skriv inn når treningsøkten var.");
-		System.out.println("For å se treningsøktene i en gitt tidsperiode, skrif inn 'fra'-'til'");
+		System.out.println("For å se på én av dem, skriv inn ID");
+		System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
+		System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
 		System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
 		System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 		String svar = this.input.nextLine();
@@ -109,14 +134,21 @@ public class Main {
 		if (svar.equals("tilbake")) {
 			velkommen();
 		}
-		else if (svar.matches("[0-9]+") && svar.length() > 0) {
-			// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
-			// display dem med litt mer info kanskje?
+		else if (svar.equals("n")) {
+			String tall = this.input.nextLine();
+			if (svar.matches("[0-9]+") && svar.length() > 0) {
+				// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
+				displayNExercises(svar);
+			}
 		}
+
+
 		else if (svar.length()==14) {
+			// én treningsøkt
 			// teste om ikke det er en valid date med en treningsøkt
 			// hente ut treningsøkten
 			// displaye det med litt mer info kanskje?
+
 		}
 		else if (svar.length()==29) {
 			// teste om ikke de er på valid date form (må ikke være dato til treningsøkter)
@@ -126,6 +158,7 @@ public class Main {
 		else {
 			skrevetFeil();
 		}
+		getExercises();
 	}
 
 //	public void manager() {
@@ -138,10 +171,14 @@ public class Main {
 //	}
 
 	public static void main(String[] args) throws Exception{
-
+		Main main = new Main();
+		main.velkommen();
+		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
 		try{
-		      WorkoutCtrl dc = new WorkoutCtrl();
-					System.out.println(dc.getAllWorkouts());
+		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
+		      main.workoutCtrl.saveWorkout(workout);
+		      workout = main.workoutCtrl.getWorkout("1");
+		      System.out.println(workout);
 		    }
 		    catch(IllegalArgumentException e){
 		      System.out.println(e.getLocalizedMessage());
