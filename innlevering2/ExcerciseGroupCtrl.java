@@ -24,7 +24,7 @@ public class ExcerciseGroupCtrl extends DBConnect{
     }
     return stringResult;
   }
-  
+
   public String createGroup(String name) {
 	  // TODO: Sjekke at gruppen ikke finnes fra før
 	  try {
@@ -42,7 +42,7 @@ public class ExcerciseGroupCtrl extends DBConnect{
 		System.out.println("klarte ikke sette inn variabel i SQL statement");
 	}
 	  try {
-		ResultSet result = regStatement.executeQuery();
+		regStatement.execute();
 		return "Gruppe laget";
 
 	} catch (SQLException e) {
