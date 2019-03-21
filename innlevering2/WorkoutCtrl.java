@@ -13,9 +13,10 @@ public class WorkoutCtrl extends DBConnect{
   private PreparedStatement regStatement;
   private PreparedStatement getStatement;
 
-  public boolean saveWorkout(Workout workout){
+  public String saveWorkout(Workout workout){
     try{
       regStatement = connection.prepareStatement("INSERT INTO Treningsøkt (Dato, Varighet, PersonligForm, Prestasjon, Notat) VALUES (?, ?, ?, ?, ?)");
+      getStatement = connection.prepareStatement("SELECT * FROM Treningsøkt ORDER BY TreningsøktID DESC LIMIT 1");
     }
     catch(Exception e){
       throw new RuntimeException(e);
@@ -27,11 +28,16 @@ public class WorkoutCtrl extends DBConnect{
       regStatement.setInt(4, workout.getPerformance());
       regStatement.setString(5, workout.getNote());
       regStatement.execute();
+      ResultSet rs = getStatement.executeQuery();
+      String id = null;
+      while (rs.next()) {
+        id = rs.getString("TreningsøktID");
+      }
+      return id;
     }
     catch(Exception e){
       throw new RuntimeException(e);
     }
-    return true;
   }
 
   public Workout getWorkout(String Id){
