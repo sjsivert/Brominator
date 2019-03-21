@@ -1,0 +1,63 @@
+% Created 2019-03-21 Thu 16:40
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Eskild Trøen}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Eskild Trøen},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\section{Dokumentasjon av DB2}
+\label{sec:org8448e49}
+Vi har valgt å gå for en fat-controller løsning hvor vi har en omtrentlig mapping mellom en tabel og en javaklasse. Alle kontroller klasser spesifiserer også en getAll-metode for å hente ut alle objekter av denne typen fra databasen.
+\section{Oversikt over klasser}
+\label{sec:orgc11c745}
+\subsection{DBConnect.java}
+\label{sec:orga6f6945}
+Er en abstrakt klasse som håndterer oppkobling mellom kontrollerobjekter og databasen.
+\subsection{DeviceCtrl.java}
+\label{sec:orgb1e25b9}
+Håndterer registrering og muligheten til å hente ut apparater i databasen. Usecase 1.
+\subsection{ExerciseCtrl.java}
+\label{sec:orge5d7aec}
+Hånderer registrering av øvelser og muligheten til å hente ut disse. Registrering returnere id på øvelsen slik at en mapping mellom øvelsesgruppe og øvelse blir muliggjort. Usecase 1.
+\subsection{ExerciseGroupCtrl.java}
+\label{sec:orge469282}
+Håndterer forholdet mellom en øvelse og øvelsesgruppen den tilhører. Dette innebærer registrering av øvelsesgrupper, mapping mellom øvelse og øvelsesgruppe, og muligheten til å hente ut øvelser i samme øvelsesgruppe. Usecase 4.
+\subsection{ExerciseInWorkoutCtrl.java}
+\label{sec:orgaa536ef}
+Håndterer forholdet mellom øvelse og treningsøkt. Under registrering av treningsøkt kan man registrere øvelser tilhørende økta. Her skjer altså registrering av forhold. Total statistikk kan også returneres fra objektet. Samt en opplisting av øvelser utføret i et gitt tidsintervall. Usecase 3, Usecase 5.
+\subsection{Workout.java}
+\label{sec:orgd389d9b}
+Et treningsøktobjekt som validerer input fra brukeren og holder på denne dataen. Usecase 1.
+\subsection{WorkoutCtrl.java}
+\label{sec:orgd6a5337}
+Kontroller som styrer lagring og uthenting av treningsøkter. Her kan man både registrer og hente ut n tidligere treningsøkter. Registrering returnerer id-en på treningsøktobjektet for å muliggjøre relasjonen mellom øvelser og treningsøkter. Ved registrering av flere øvelser på samme treningsøkt tar ExerciseInWorkoutCtrl seg av en del av arbeidet.
+Usecase 1, Usecase 2.
+\subsection{Main.java}
+\label{sec:org192976b}
+Klassen som interagerer med brukeren og holder oversikten over hva som skal gjøres. Som nevnt i neste hovedpunkt har vi benyttet en slags hovedmeny løsning hvor bukeren starter med flere valg, utfører ett av disse, og sendes deretter tilbake til hovedmenyen. Mer utdypet om programmets helhet under punktet "Oversikt over løste usecase".
+
+\section{Oversikt over løste usecase}
+\label{sec:orgf8e5d49}
+Klassene i punktet over er tagget med usecase de hovedsaklig har som oppgave å løse. I programmet forgår mye av løsningen direkte gjennom reg- og get-metoder som i seg selv er ganske selvforklarende. Main-metoden kjører ulike deler av programmet gjennom dedikerte menyfunksjoner slik som createExercise(), createDevice() o.l. Vi har partisjonert programmet inn i en meny som muligjør returnering til velkommen-funksjonen etter at ønsket aksjon er utført. Velkommen-funksjonen er da en hovedmeny som lar brukern velge mellom all funksjonalitet spesifisert av usecasene. Det valgfrie usecase 5, som omhandler total statistikk, er løst slik at bruker ved start av programmet får opp total statistikk basert på resultatene som tidligere er lagt inn. Ellers finnes det som sagt dedikerte metoder som løser spesifikk usecase direkte. Om ønskelig vil en kjapp titt på Main.java sammen med metodenavn og oversikten over gjør den spesifikke kode-implementasjonen synlig.
+\end{document}
