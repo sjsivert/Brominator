@@ -32,12 +32,14 @@ public class ExcerciseGroupCtrl extends DBConnect{
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Klarte ikke lage SQL statement");
 	}
 	  try {
 		regStatement.setString(1, name);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("klarte ikke sette inn variabel i SQL statement");
 	}
 	  try {
 		ResultSet result = regStatement.executeQuery();
@@ -46,6 +48,7 @@ public class ExcerciseGroupCtrl extends DBConnect{
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Klarte ikke kjøre SQL Statement");
 	}
 	return "Noe gikk galt";
   }
