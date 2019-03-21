@@ -49,7 +49,16 @@ public class Main {
     }
 
     public void getExerciseByGroup() {
-
+	System.out.println(excerciseGroupCtrl.getAll());
+	System.out.print("Skriv inn en øvelsesID: ");
+	String id = input.nextLine();
+	try {
+	    System.out.println(excerciseGroupCtrl.getByID(id));
+	}
+	catch (Exception e) {
+	    System.out.println("Noe gikk galt");
+	}
+	velkommen();
     }
 
     public void velkommen() {
@@ -113,7 +122,7 @@ public class Main {
 	    }
 	}
 	velkommen();
-    }n
+    }
 
     private void createGroup() {
 	// TODO Auto-generated method stub
@@ -128,13 +137,12 @@ public class Main {
 	velkommen();
     }
 
-    private registerExercisesToWorkout(id) {
-	String id = input.nextLine();
+    private void registerExercisesToWorkout(String workoutId) {
 	while (true) {
 	    System.out.println(exerciseCtrl.getAllExercises());
 	    System.out.print("Skriv inn id på øvelsen du vil legge til (trykk kun enter hvis du er ferdig): ");
-	    String id = input.nextLine();
-	    if (id.equals("")) {
+	    String exerciseId = input.nextLine();
+	    if (exerciseId.equals("")) {
 		break;
 	    }
 	    System.out.print("Skriv antall kilo: ");
@@ -143,6 +151,7 @@ public class Main {
 	    String antall_reps = input.nextLine();
 	    System.out.print("Skriv antall set: ");
 	    String antall_sett = input.nextLine();
+	    System.out.print("------------------------------------------------");
 	}
 
     }
@@ -208,8 +217,6 @@ public class Main {
     public void getExercises() {
 	// Vise treningsøktene basert på id
 	// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
-	System.out.println("Dette er alle treningsøktene:");
-	displayAllExercises();
 	System.out.println("For å se på én av dem, skriv inn ID");
 	System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
 	System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
