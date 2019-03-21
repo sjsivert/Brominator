@@ -24,6 +24,26 @@ public class ExcerciseGroupCtrl extends DBConnect{
     }
     return stringResult;
   }
+  private String getAll() throws SQLException {
+	 ResultSet res;
+	 String result = "";
+	 try {
+		regStatement = connection.prepareStatement("SELECT * FROM ØvelsesGruppe;");
+		res = regStatement.executeQuery();
+		 while (res.next()) {
+			 result = "ID: "+ Integer.toString(res.getInt("ØvelsesgruppeID")) + "Navn: " + res.getString("Navn") + "\n";
+		 }
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		System.out.println("Noe gikk galt");
+	}
+	 
+	return result;
+	 
+
+  }
+	  
 
   public String createGroup(String name) {
 	  // TODO: Sjekke at gruppen ikke finnes fra før
