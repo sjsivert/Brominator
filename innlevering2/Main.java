@@ -170,18 +170,18 @@ public class Main {
 //		}
 //	}
 
-	public static void main(String[] args) throws Exception{
-		Main main = new Main();
-		main.velkommen();
-		System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
-		try{
-		      Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
-		      main.workoutCtrl.saveWorkout(workout);
-		      workout = main.workoutCtrl.getWorkout("1");
-		      System.out.println(workout);
-		    }
-		    catch(IllegalArgumentException e){
-		      System.out.println(e.getLocalizedMessage());
-		    }
-	}
+public static void main(String[] args) throws Exception{
+	Main main = new Main();
+	main.velkommen();
+	System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
+	try{
+				Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
+				main.workoutCtrl.saveWorkout(workout);
+				workout = main.workoutCtrl.getWorkout("1");
+				System.out.println(workout);
+			}
+			catch(IllegalArgumentException e){
+				System.out.println(e.getLocalizedMessage());
+			}
+}
 }

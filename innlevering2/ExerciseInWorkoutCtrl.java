@@ -34,4 +34,34 @@ public class ExerciseInWorkoutCtrl extends DBConnect{
       throw new RuntimeException(e);
     }
   }
+
+  public String getOverallStats(){
+    try{
+      getStatement = connection.prepareStatement("SELECT Kilo, AntallSett, AntallReps FROM ØvelseITreningsøkt");
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    try{
+      ResultSet rs = getStatement.executeQuery();
+      String output = "";
+      int totKilos = 0;
+      int totSets = 0;
+      int totReps = 0;
+      while (rs.next()) {
+        totKilos +=  rs.getInt("Kilo");
+        totSets += rs.getInt("AntallSett");
+        totReps += rs.getInt("AntallReps");
+      }
+      output += "-----------------------------" +
+                "Total statistikk" + "\n" +
+                "Total antall kilo: " + totKilos + "\n" +
+                "Total antall sett: " + totSets + "\n" +
+                "Total antall reps: " + totReps;
+      return output;
+    }
+    catch(Exception e){
+      throw new RuntimeException(e);
+    }
+  }
 }
