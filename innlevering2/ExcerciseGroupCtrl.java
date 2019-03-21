@@ -16,22 +16,23 @@ public class ExcerciseGroupCtrl extends DBConnect{
     regStatement.setInt(1, idInt);
     ResultSet result = regStatement.executeQuery();
 
-    String stringResult = "";
+    String stringResult = "ØVELSER: \n";
     while (result.next()) {
-    	String str = String.format("Name: %s. Description: %s \n", result.getString("Navn"), result.getString("Beskrivelse"));
+    	String str = String.format("Navn: %s. Beskrivelse: %s \n", result.getString("Øvelse.Navn"), result.getString("Beskrivelse") + "\n");
 
     	stringResult = stringResult + str;
     }
     return stringResult;
   }
-  private String getAll() throws SQLException {
+
+  public String getAll() {
 	 ResultSet res;
 	 String result = "";
 	 try {
 		regStatement = connection.prepareStatement("SELECT * FROM ØvelsesGruppe;");
 		res = regStatement.executeQuery();
 		 while (res.next()) {
-			 result = "ID: "+ Integer.toString(res.getInt("ØvelsesgruppeID")) + "Navn: " + res.getString("Navn") + "\n";
+			 result += "ID: "+ Integer.toString(res.getInt("ØvelsesgruppeID")) + " Navn: " + res.getString("Navn") + "\n";
 		 }
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -44,6 +45,7 @@ public class ExcerciseGroupCtrl extends DBConnect{
 
   }
 
+<<<<<<< HEAD
 	public boolean regExerciseToGroup(String exerciseId, String groupId){
     try{
       regStatement = connection.prepareStatement("INSERT INTO ØvelseIØvelsesgruppe (ØvelseID, ØvelsesgruppeID) VALUES (?, ?)");
@@ -62,6 +64,8 @@ public class ExcerciseGroupCtrl extends DBConnect{
     return true;
   }
 
+=======
+>>>>>>> 69573aa6e483635f22f91429f190a51f4d994cc0
 
   public String createGroup(String name) {
 	  // TODO: Sjekke at gruppen ikke finnes fra før

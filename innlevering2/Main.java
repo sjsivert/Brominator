@@ -49,7 +49,16 @@ public class Main {
     }
 
     public void getExerciseByGroup() {
-
+	System.out.println(excerciseGroupCtrl.getAll());
+	System.out.print("Skriv inn en øvelsesID: ");
+	String id = input.nextLine();
+	try {
+	    System.out.println(excerciseGroupCtrl.getByID(id));
+	}
+	catch (Exception e) {
+	    System.out.println("Noe gikk galt");
+	}
+	velkommen();
     }
 
     public void velkommen() {
@@ -81,6 +90,26 @@ public class Main {
 	velkommen();
     }
 
+    private void registerExerciseToGroups(String exerciseId) {
+	while (true) {
+	    System.out.println(exerciseGroupCtrl.getAll());
+	    System.out.print("Skriv inn id på gruppen du vil koble øvelsen til: ");
+	    System.out.print("Skriv inn id på gruppen du vil koble øvelsen til (enter når du er ferdig): ");
+	    String groupId = input.nextLine();
+	    if (exerciseId.equals("")) {
+		break;
+	    }
+	    System.out.print("------------------------------------------------");
+	    try {
+		// Gjør dette
+	    }
+	    catch (Exception e) {
+		System.out.println("Noe gikk galt");
+	    }
+	}
+    }
+
+
     private void registerExercise() {
 	System.out.print("Skriv inn navn: ");
 	String name = input.nextLine();
@@ -95,8 +124,9 @@ public class Main {
 	    System.out.print("Skriv inn apparat_id: ");
 	    String apparatId = input.nextLine();
 	    try {
-		exerciseCtrl.regExercise(name, description, harApparat, apparatId);
+		String id = exerciseCtrl.regExercise(name, description, harApparat, apparatId);
 		System.out.println("Øvelse registrert!");
+		registerExerciseToGroups(id);
 	    }
 	    catch (Exception e) {
 		System.out.println(e);
@@ -104,8 +134,9 @@ public class Main {
 	    }
 	} else {
 	    try {
-		exerciseCtrl.regExercise(name, description, harApparat);
+		String id = exerciseCtrl.regExercise(name, description, harApparat);
 		System.out.println("Øvelse registrert!");
+		registerExerciseToGroups(id);
 	    }
 	    catch (Exception e) {
 		System.out.println(e);
@@ -113,7 +144,7 @@ public class Main {
 	    }
 	}
 	velkommen();
-    }n
+    }
 
     private void createGroup() {
 	// TODO Auto-generated method stub
@@ -128,21 +159,27 @@ public class Main {
 	velkommen();
     }
 
-    private registerExercisesToWorkout(id) {
-	String id = input.nextLine();
+    private void registerExercisesToWorkout(String workoutId) {
 	while (true) {
 	    System.out.println(exerciseCtrl.getAllExercises());
 	    System.out.print("Skriv inn id på øvelsen du vil legge til (trykk kun enter hvis du er ferdig): ");
-	    String id = input.nextLine();
-	    if (id.equals("")) {
+	    String exerciseId = input.nextLine();
+	    if (exerciseId.equals("")) {
 		break;
 	    }
 	    System.out.print("Skriv antall kilo: ");
-	    String antall_kilo = input.nextLine();
+	    String antallKilo = input.nextLine();
 	    System.out.print("Skriv antall reps: ");
-	    String antall_reps = input.nextLine();
+	    String antallReps = input.nextLine();
 	    System.out.print("Skriv antall set: ");
-	    String antall_sett = input.nextLine();
+	    String antallSett = input.nextLine();
+	    System.out.print("------------------------------------------------");
+	    try {
+		exerciseInWorkoutCtrl.regExerciseInWorkout(workoutId, exerciseId, antallKilo, antallSett, antallReps);
+	    }
+	    catch (Exception e) {
+		System.out.println("Noe gikk galt");
+	    }
 	}
 
     }
@@ -206,14 +243,8 @@ public class Main {
     }
 
     public void getExercises() {
-	// Vise treningsøktene basert på id
-	// Man kan velge 1 id, antall treningsøkter bakover og innen et gitt tidsintervall
-	System.out.println("Dette er alle treningsøktene:");
-	displayAllExercises();
-	System.out.println("For å se på én av dem, skriv inn ID");
 	System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
-	System.out.println("For å se treningsøktene i en gitt tidsperiode, skriv inn 'fra'-'til'");
-	System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
+	System.out.println("For å se på en øvelse i en gitt tidsperiode, skriv inn 'tidsperiode'");
 	System.out.println("----> Vil du tilbake til hovedmenyen, skriv 'tilbake'");
 	String svar = this.input.nextLine();
 
@@ -221,25 +252,34 @@ public class Main {
 	    velkommen();
 	}
 	else if (svar.equals("n")) {
+	    System.out.println("Skriv inn antall du vil ha ut");
 	    String tall = this.input.nextLine();
 	    if (svar.matches("[0-9]+") && svar.length() > 0) {
 		// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
 		displayNExercises(svar);
 	    }
-	}
-
-
-	else if (svar.length()==14) {
-	    // én treningsøkt
-	    // teste om ikke det er en valid date med en treningsøkt
-	    // hente ut treningsøkten
-	    // displaye det med litt mer info kanskje?
+	    else {
+		System.out.println("Det var ikke et tall.");
+	    }
 
 	}
-	else if (svar.length()==29) {
-	    // teste om ikke de er på valid date form (må ikke være dato til treningsøkter)
-	    // hente ut de imellom
-	    //displaye det med litt mer info kanskje?
+	else if (svar.equals("tidsperiode")) {
+	    System.out.println("Form på tid er: 'yyyy-mm-dd hh:mm'"); //TODO: dobbeltsjekke at dette stemmer
+	    System.out.print("Finn øvelse fra: ");
+	    String date1 = this.input.nextLine();
+	    System.out.print("Finn øvelse til: ");
+	    String date2 = this.input.nextLine();
+	    System.out.println(exerciseCtrl.getAllExercises());
+	    System.out.print("ØvselsesID: ");
+	    String exerciseId = this.input.nextLine();
+	    try{
+		ExerciseInWorkoutCtrl ctrl = new ExerciseInWorkoutCtrl();
+		String to_screen = ctrl.getResultsInInterval(exerciseId, date1, date2);
+		System.out.println(to_screen);
+	    }
+	    catch(IllegalArgumentException e){
+		System.out.println(e);
+	    }
 	}
 	else {
 	    skrevetFeil();
