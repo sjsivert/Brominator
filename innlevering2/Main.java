@@ -147,7 +147,6 @@ public class Main {
     }
 
     private void createGroup() {
-	// TODO Auto-generated method stub
 	System.out.print("Skriv inn navn på Treningsgruppen (EKS: Bein, Armer, rygg etc): ");
 	String svar = input.nextLine();
 	ExerciseGroupCtrl groupCtrl = new ExerciseGroupCtrl();
@@ -230,18 +229,6 @@ public class Main {
 	}
     }
 
-    public void displayAllExercises() {
-	System.out.println(this.workoutCtrl.getNPreviousWorkouts("9999"));
-    }
-
-    public void displayNExercises(String n) {
-	this.workoutCtrl.getNPreviousWorkouts(n);
-    }
-
-    public void displayOneExercise() {
-
-    }
-
     public void getExercises() {
 	System.out.println("For å se de n sistetreningsøktene, skriv skriv 'n'.");
 	System.out.println("For å se på en øvelse i en gitt tidsperiode, skriv inn 'tidsperiode'");
@@ -254,9 +241,8 @@ public class Main {
 	else if (svar.equals("n")) {
 	    System.out.println("Skriv inn antall du vil ha ut");
 	    String tall = this.input.nextLine();
-	    if (svar.matches("[0-9]+") && svar.length() > 0) {
-		// hent ut de 'svar' siste øktene (eller færre hvis det er færre økter enn 'svar')
-		displayNExercises(svar);
+	    if (tall.matches("[0-9]+") && tall.length() > 0) {
+		System.out.println(workoutCtrl.getNPreviousWorkouts(tall));
 	    }
 	    else {
 		System.out.println("Det var ikke et tall.");
@@ -287,15 +273,6 @@ public class Main {
 	getExercises();
     }
 
-    //	public void manager() {
-    //		if (state.equals("velkommen"){
-    //			velkommen();
-    //		}
-    //		if (state.equals("createExercise")) {
-    //			createExercise();
-    //		}
-    //	}
-
     public void start() {
 	System.out.println("Hei og velkommen til din treningsdagbok!");
 	System.out.println(exerciseInWorkoutCtrl.getOverallStats());
@@ -305,15 +282,5 @@ public class Main {
     public static void main(String[] args) throws Exception{
 	Main main = new Main();
 	main.start();
-	System.out.println("Dato, Varighet, Personlig Form, Prestasjon, Notat");
-	try{
-	    Workout workout = new Workout("2019-02-04 10:23", "70", "5", "8", "Veldig god innsats");
-	    main.workoutCtrl.saveWorkout(workout);
-	    workout = main.workoutCtrl.getWorkout("1");
-	    System.out.println(workout);
-	}
-	catch(IllegalArgumentException e){
-	    System.out.println(e.getLocalizedMessage());
-	}
     }
 }
